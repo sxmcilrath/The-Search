@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status', 
                 ['grey', 'crossed', 'brown', 'orange', 'blue', 'green', 'pink', 'red'])
                 ->default('grey');
-            $table->integer('seconds', true);
+            $table->integer('seconds');
             //TODO: need to figure out if we want an artist id here or not
             $table->timestamps();
         });
