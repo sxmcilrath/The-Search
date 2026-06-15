@@ -14,7 +14,8 @@ class Album extends Model
         'pure_score', // maybe don't need
         'vibe_score', 
         'status',
-        'image_url'
+        'image_url',
+        'user_id'
     ];
 
     public function artists() {
@@ -23,5 +24,9 @@ class Album extends Model
 
     public function tracks() {
         return $this->hasMany(Track::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
