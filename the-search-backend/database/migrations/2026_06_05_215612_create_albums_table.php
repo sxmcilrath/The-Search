@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('vibe_score')->nullable();
             $table->enum('status', ['to-listen', 'listening', 'listened'])->default('to-listen');
             $table->string('image_url')->default("someURL");
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
