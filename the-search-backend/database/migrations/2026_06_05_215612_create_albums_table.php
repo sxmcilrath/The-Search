@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('spotify_id')->nullable(false)->unique();
             $table->string('name')->nullable(false);
             $table->date('release_date')->nullable(false);
-            $table->double('pure_score')->nullable();
-            $table->double('vibe_score')->nullable();
+            $table->double('pure_score');
+            $table->double('vibe_score');
             $table->enum('status', ['to-listen', 'listening', 'listened'])->default('to-listen');
             $table->string('image_url')->default("someURL");
             $table->foreignId('user_id')->constrained('users');

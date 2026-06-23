@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
             $table->string('spotify_id')->nullable(false)->unique();
+            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
             $table->string('name')->nullable(false);
             $table->string('number')->nullable(false);
-            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
             $table->enum('status', 
                 ['grey', 'crossed', 'brown', 'orange', 'blue', 'green', 'pink', 'red'])
                 ->default('grey');
