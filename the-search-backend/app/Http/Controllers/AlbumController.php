@@ -166,23 +166,39 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        //will run the find or fail before this so I don't have to
+        $album->load(['artists', 'tracks']);
+        return response()->json($album, 200);
     }
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * Don't think we need this
      */
     public function edit(Album $album)
-    {
-        //
-    }
+    {}
 
     /**
      * Update the specified resource in storage.
+     * Field that would be updated: 
+     *      pure score
+     *      vibe score 
+     *      status
      */
     public function update(Request $request, Album $album)
     {
-        //
+
+        $validated = $request->validate([
+            'pure_score'    => 'sometimes|required|numeric|min:0|max:10',
+            'vibe_score'    => 'sometimes|required|numeric|min:0|max:10',
+            'status'        => 'sometimes|string|in:to-listen,listening,listened'
+        ]);
+
+        $album->update($validated);
+
+        return response()->json($album, 200);
+        
     }
 
     /**
@@ -190,6 +206,8 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        $album->delete();
+
+        return response()->noContent();
     }
 }
